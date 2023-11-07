@@ -6,7 +6,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" ipr="trust200902" submissionType="IETF" obsoletes="7084" docName="draft-winters-v6ops-rfc7084bis-00">
+<rfc category="info" ipr="trust200902" submissionType="IETF" obsoletes="7084" docName="draft-winters-v6ops-rfc7084bis-01">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -251,8 +251,7 @@
           topological reachability (e.g., ULA) or because the IPv6 CE router
           is not connected to the IPv6 network on its WAN interface. To
           support host implementations that do not handle multihoming in a
-          multi-prefix environment <xref
-          target="MULTIHOMING-WITHOUT-NAT"></xref>, the IPv6 CE router should
+          multi-prefix environment <xref target="RFC7157"></xref>, the IPv6 CE router should
           not, as detailed in the requirements below, advertise itself as a
           default router on the LAN interface(s) when it does not have IPv6
           connectivity on the WAN interface or when it is not provisioned with
@@ -330,7 +329,7 @@
             <t>When the router is attached to the WAN interface link, it MUST
             act as an IPv6 host for the purposes of stateless <xref
             target="RFC4862"></xref> or stateful <xref
-            target="RFC3315"></xref> interface address assignment.</t>
+            target="RFC8415"></xref> interface address assignment.</t>
 
             <t>The IPv6 CE router MUST generate a link-local address and
             finish Duplicate Address Detection according to <xref
@@ -346,7 +345,7 @@
             hop.</t>
 
             <t>The router MUST act as a requesting router for the purposes of
-            DHCPv6 prefix delegation (<xref target="RFC3633"></xref>).</t>
+            DHCPv6 prefix delegation (<xref target="RFC8415"></xref>).</t>
 
             <t>The IPv6 CE router MUST use a persistent DHCP Unique Identifier
             (DUID) for DHCPv6 messages. The DUID MUST NOT change between
@@ -389,10 +388,10 @@
             option.</t>
 
             <t>The IPv6 CE router MUST support DHCPv6 <xref
-            target="RFC3315"></xref> client behavior.</t>
+            target="RFC8415"></xref> client behavior.</t>
 
             <t>The IPv6 CE router MUST be able to support the following DHCPv6
-            options: Identity Association for Non-temporary Address (IA_NA), Reconfigure Accept <xref target="RFC3315"></xref>,
+            options: Identity Association for Non-temporary Address (IA_NA), Reconfigure Accept <xref target="RFC8415"></xref>,
             and DNS_SERVERS <xref target="RFC3646"></xref>. The IPv6 CE router
             SHOULD be able to support the DNS Search List (DNSSL) option as
             specified in <xref target="RFC3646"></xref>.</t>
@@ -417,7 +416,7 @@
             to require a global IPv6 address on the WAN interface.</t>
 
             <t>The CE router MUST support the SOL_MAX_RT 
-               option <xref target="RFC7083"></xref>
+               option <xref target="RFC8415"></xref>
                and request the SOL_MAX_RT option in an Option Request Option (ORO).</t>
 
             <t>As a router, the IPv6 CE router MUST follow the weak host (Weak
@@ -434,7 +433,7 @@
         <t>Prefix delegation requirements: <list style="format WPD-%d:">
             <t>The IPv6 CE router MUST support DHCPv6 prefix delegation
             requesting router behavior as specified in <xref
-            target="RFC3633"></xref> (Identity Association for Prefix Delegation (IA_PD) option).</t>
+            target="RFC8415"></xref> (Identity Association for Prefix Delegation (IA_PD) option).</t>
 
             <t>The IPv6 CE router MAY indicate as a hint to the delegating
             router the size of the prefix it requires. If so, it MUST ask for
@@ -475,7 +474,7 @@
             option in DHCPv6, it MUST accept an IA_PD option in DHCPv6
             Advertise/Reply messages, even if the message does not contain any
             addresses, unless configured to only obtain its WAN IPv6 address
-            via DHCPv6; see <xref target="DHCPV6-STATEFUL-ISSUES"></xref>.</t>
+            via DHCPv6; see <xref target="RFC8415"></xref>.</t>
 
             <t>By default, an IPv6 CE router MUST NOT initiate any dynamic
             routing protocol on its WAN interface.</t>
@@ -559,9 +558,9 @@
             <t>The A and L flags' (<xref target="RFC4861"></xref>) settings SHOULD be user configurable.</t>
 
             <t>The IPv6 CE router MUST support a DHCPv6 server capable of IPv6
-            address assignment according to <xref target="RFC3315"></xref> OR
+            address assignment according to OR
             a stateless DHCPv6 server according to <xref
-            target="RFC3736"></xref> on its LAN interfaces.</t>
+            target="RFC8415"></xref> on its LAN interfaces.</t>
 
             <t>Unless the IPv6 CE router is configured to support the DHCPv6
             IA_NA option, it SHOULD set the M flag to zero and the O flag to 1 in
@@ -578,8 +577,8 @@
             in <xref target="RFC6106"></xref>.</t>
 
             <t>The IPv6 CE router SHOULD make available a subset of DHCPv6
-            options (as listed in Section 5.3 of <xref
-            target="RFC3736"></xref>) received from the DHCPv6 client on its
+            options (as listed in Section 21 of <xref
+            target="RFC8415"></xref>) received from the DHCPv6 client on its
             WAN interface to its LAN-side DHCPv6 server.</t>
 
             <t>If the delegated prefix changes, i.e., the current prefix is
@@ -692,10 +691,7 @@
       <?rfc include='reference.RFC.2119.xml'?>
       <?rfc include='reference.RFC.2464.xml'?>
       <?rfc include='reference.RFC.2827.xml'?>
-      <?rfc include='reference.RFC.3315.xml'?>
-      <?rfc include='reference.RFC.3633.xml'?>
       <?rfc include='reference.RFC.3646.xml'?>
-      <?rfc include='reference.RFC.3736.xml'?>
       <?rfc include='reference.RFC.5905.xml'?>
       <?rfc include='reference.RFC.5908.xml'?>
       <?rfc include='reference.RFC.4191.xml'?>
@@ -716,86 +712,13 @@
       <?rfc include='reference.RFC.6434.xml'?>
       <?rfc include='reference.RFC.6603.xml'?>
       <?rfc include='reference.RFC.6887.xml'?>
+      <?rfc include='reference.RFC.7157.xml'?>
+      <?rfc include='reference.RFC.8415.xml'?>
       <?rfc include='reference.RFC.8585.xml'?>
-
-<!-- I-D.droms-dhc-dhcpv6-solmaxrt-update.xml, Companion Document-->
-<reference anchor='RFC7083'>
-<front>
-<title>Modification to Default Value of SOL_MAX_RT</title>
-
-<author initials='R' surname='Droms' fullname='Ralph Droms'>
-    <organization />
-</author>
-
-<date month='November' year='2013' />
-
-<abstract><t>This document updates RFC 3315 by redefining the default value for SOL_MAX_RT and defining an option through which a DHCPv6 server can override the client's default value for SOL_MAX_RT with a new value.</t></abstract>
-
-</front>
-
-<seriesInfo name='RFC' value='7083' />
-</reference>
 
 </references>
 
 <references title="Informative References">
-
-<!--ietf-dhc-dhcpv6-stateful-issues-00, Active -->
-<reference anchor='DHCPV6-STATEFUL-ISSUES'>
-<front>
-<title>Issues with multiple stateful DHCPv6 options</title>
-
-<author initials='O' surname='Troan' fullname='Ole Troan'>
-    <organization />
-</author>
-
-<author initials='B' surname='Volz' fullname='Bernie Volz'>
-    <organization />
-</author>
-
-<date month='May' year='2013' />
-
-<abstract><t>Dynamic Host Configuration Protocol for IPv6 (DHCPv6) was not written with the expectation that additional stateful DHCPv6 options would be developed.  IPv6 Prefix Options for Dynamic Host Configuration Protocol (DHCP) version 6 shoe-horned the new options for Prefix Delegation into DHCPv6.  Implementation experience of the CPE model described in [RFC6204] has shown multiple issues with the DHCPv6 protocol in supporting multiple stateful options.</t></abstract>
-
-</front>
-
-<seriesInfo name='Work in' value='Progress' />
-</reference>
-
-<!--draft-ietf-v6ops-multihoming-without-nat66-00.txt, Expired -->
-      <reference anchor="MULTIHOMING-WITHOUT-NAT">
-        <front>
-          <title>IPv6 Multihoming without Network Address Translation</title>
-
-          <author fullname="Ole Troan" initials="O" role="editor"
-                  surname="Troan">
-            <organization></organization>
-          </author>
-
-          <author fullname="David Miles" initials="D" surname="Miles">
-            <organization></organization>
-          </author>
-
-          <author fullname="Satoru Matsushima" initials="S"
-                  surname="Matsushima">
-            <organization></organization>
-          </author>
-
-          <author fullname="Tadahisa Okimoto" initials="T" surname="Okimoto">
-            <organization></organization>
-          </author>
-
-          <author fullname="Dan Wing" initials="D" surname="Wing">
-            <organization></organization>
-          </author>
-
-          <date month="December" year="2010" />
-        </front>
-
-        <seriesInfo name="Work in" value="Progress" />
-
-
-      </reference>
 
       <reference anchor="UPnP-IGD" target="http://upnp.org/specs/gw/igd2/">
         <front>
