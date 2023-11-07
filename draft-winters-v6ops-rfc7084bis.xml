@@ -428,6 +428,10 @@
             <t>The IPv6 CE router SHOULD implement the Information Refresh
             Time option and associated client behavior as specified in <xref
             target="RFC8415"></xref>.</t>
+
+            <t>The IPv6 CE Router MUST NOT use an EUI-64 based address as 
+            discussed in <xref target="RFC7721"></xref>. IPv6 CE Router SHOULD follow
+            <xref target="RFC8064"></xref> when generating an IPv6 address.</t>
           </list></t>
 
         <t>Prefix delegation requirements: <list style="format WPD-%d:">
@@ -616,11 +620,8 @@
             enabled by default or mechanisms by which users would configure
             it.</t>
 
-            <t>The IPv6 CE router SHOULD support ingress filtering in
-            accordance with BCP 38 <xref target="RFC2827"></xref>.  Note that
-            this requirement was downgraded from a MUST from RFC 6204 due
-            to the difficulty of implementation in the CE router and the feature's 
-            redundancy with upstream router ingress filtering.</t>
+            <t>The IPv6 CE router MUST support ingress filtering in
+            accordance with BCP 38 <xref target="RFC2827"></xref>.</t> 
 
             <t>If the IPv6 CE router firewall is configured to filter incoming
             tunneled data, the firewall SHOULD provide the capability to
@@ -714,6 +715,8 @@
       <?rfc include='reference.RFC.6603.xml'?>
       <?rfc include='reference.RFC.6887.xml'?>
       <?rfc include='reference.RFC.7157.xml'?>
+      <?rfc include='reference.RFC.7721.xml'?>
+      <?rfc include='reference.RFC.8064.xml'?>
       <?rfc include='reference.RFC.8106.xml'?>
       <?rfc include='reference.RFC.8415.xml'?>
       <?rfc include='reference.RFC.8504.xml'?>
