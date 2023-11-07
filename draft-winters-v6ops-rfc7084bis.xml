@@ -34,6 +34,19 @@
          <uri>http://www.theipv6company.com/</uri>
       </address>
     </author>
+    <author fullname="Ben Patton" initials="P." surname="Patton">
+     <organization abbrev="UNH-IOL">University of New Hampshire, Interoperability Lab (UNH-IOL)</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city> Durham</city>
+          <region>NH</region>
+          <code></code>
+          <country> United States </country>
+        </postal>
+        <email>bpatton@iol.unh.edu</email>
+      </address>
+    </author>
     <author fullname="Timothy Winters" initials="T." surname="Winters">
       <organization abbrev="QA Cafe">QA Cafe</organization>
       <address>
@@ -54,10 +67,7 @@
       <t>This document specifies requirements for an IPv6 Customer Edge (CE)
       router. Specifically, the current version of this document focuses on
       the basic provisioning of an IPv6 CE router and the provisioning of IPv6
-      hosts attached to it. The document also covers IP transition
-      technologies. Two transition technologies in RFC 5969's IPv6 Rapid Deployment on IPv4 Infrastructures (6rd) and RFC
-      6333's Dual-Stack Lite (DS-Lite) are covered in the document. The document obsoletes RFC
-      6204.</t>
+      hosts attached to it. The document obsoletes RFC 7084.</t>
     </abstract>
   </front>
 
@@ -87,10 +97,9 @@
       <t>See <xref target="RFC4779"></xref> for a discussion of options
       available for deploying IPv6 in service provider access networks.</t>
 
-      <t>The document also covers the IP transition technologies that were
-      available at the time this document was written. Two transition
-      technologies in 6rd <xref target="RFC5969"></xref> and DS-Lite <xref
-      target="RFC6333"></xref> are covered in the document.</t>
+      <t>The document does not cover the IP transition technologies available 
+      to IPv6 CE Router.  For information about IP transition technologies 
+      please refer to <xref target="RFC8585"></xref>.</t>
 
       <section title="Requirements Language">
         <t>
@@ -589,102 +598,6 @@
           </list></t>
       </section>
 
-      <section title="Transition Technologies Support">
-
-        <section title="6rd">
-          <t>6rd <xref target="RFC5969"></xref> specifies an automatic
-          tunneling mechanism tailored to advance deployment of IPv6 to end users
-          via a service provider's IPv4 network infrastructure. Key
-          aspects include automatic IPv6 prefix delegation to sites, stateless
-          operation, simple provisioning, and service that is equivalent to
-          native IPv6 at the sites that are served by the mechanism. It is
-          expected that such traffic is forwarded over the CE router's native
-          IPv4 WAN interface and not encapsulated in another tunnel.</t>
-
-          <t>The CE router SHOULD support 6rd functionality. If 6rd is
-          supported, it MUST be implemented according to <xref
-          target="RFC5969"> </xref>. The following CE Requirements also
-          apply:</t>
-
-          <t>6rd requirements: <list style="format 6RD-%d:">
-              <t>The IPv6 CE router MUST support 6rd configuration via the 6rd
-              DHCPv4 Option 212. If the CE router has obtained an IPv4
-              network address through some other means such as PPP, it SHOULD
-              use the DHCPINFORM request message <xref
-              target="RFC2131"></xref> to request the 6rd DHCPv4 Option. The
-              IPv6 CE router MAY use other mechanisms to configure 6rd
-              parameters. Such mechanisms are outside the scope of this
-              document.</t>
-
-              <t>If the IPv6 CE router is capable of automated configuration
-              of IPv4 through IPCP (i.e., over a PPP connection), it MUST
-              support user-entered configuration of 6rd.</t>
-
-              <t>If the CE router supports configuration
-mechanisms other than the 6rd DHCPv4 Option 212 (user-entered,
-TR-069 <xref target="TR-069" />, etc.), the CE router MUST support 6rd in "hub and spoke"
-mode. 6rd in "hub and
-              spoke" requires all IPv6 traffic to go to the 6rd Border Relay.
-              In effect, this requirement removes the "direct connect to 6rd"
-              route defined in Section 7.1.1 of <xref
-              target="RFC5969"></xref>.</t>
-
-              <t>A CE router MUST allow 6rd and native IPv6 WAN interfaces 
-                 to be active alone as well as simultaneously in order to support 
-                 coexistence of the two technologies during an incremental migration 
-                 period such as a migration from 6rd to native IPv6.
-              </t>
-
-              <t>Each packet sent on a 6rd or native WAN interface MUST be directed 
-                 such that its source IP address is derived from the delegated prefix 
-                 associated with the particular interface from which the packet 
-                 is being sent (Section 4.3 of <xref target="RFC3704"></xref>).</t>
-              
-              <t>The CE router MUST allow different as well as identical delegated prefixes 
-                 to be configured via each (6rd or native) WAN interface.
-              </t>
-
-              <t>In the event that forwarding rules produce a tie between 6rd and 
-                 native IPv6, by default, the IPv6 CE router MUST prefer native IPv6.
-              </t>
-            </list></t>
-        </section>
-
-        <section title="Dual-Stack Lite (DS-Lite)">
-          <t>Dual-Stack Lite <xref target="RFC6333"></xref> enables both
-          continued support for IPv4 services and incentives for the
-          deployment of IPv6. It also de&nbhy;couples IPv6 deployment in the
-          service provider network from the rest of the Internet, making
-          incremental deployment easier. Dual-Stack Lite enables a broadband
-          service provider to share IPv4 addresses among customers by
-          combining two well-known technologies: IP in IP (IPv4-in-IPv6) and
-          Network Address Translation (NAT). It is expected that DS-Lite
-          traffic is forwarded over the CE router's native IPv6 WAN interface,
-          and not encapsulated in another tunnel.</t>
-
-          <t>The IPv6 CE router SHOULD implement DS-Lite functionality. If
-          DS&nbhy;Lite is supported, it MUST be implemented according to <xref
-          target="RFC6333"></xref>. This document takes no position on
-          simultaneous operation of Dual-Stack Lite and native IPv4. The
-          following CE router requirements also apply:</t>
-
-          <t>WAN requirements: <list style="format DLW-%d:">
-              <t>The CE router MUST support configuration of DS-Lite via the 
-                 DS-Lite DHCPv6 option <xref target="RFC6334"></xref>. 
-                 The IPv6 CE router MAY use other mechanisms to configure 
-                 DS-Lite parameters. Such mechanisms are outside the scope 
-                 of this document.</t>
-
-              <t>The IPv6 CE router MUST NOT perform IPv4 Network Address
-              Translation (NAT) on IPv4 traffic encapsulated using
-              DS-Lite.</t>
-
-              <t>If the IPv6 CE router is configured with an IPv4 address on
-              its WAN interface, then the IPv6 CE router SHOULD disable the
-              DS-Lite Basic Bridging BroadBand (B4) element.</t>
-            </list></t>
-        </section>
-      </section>
 
       <section title="Security Considerations">
         <t>It is considered a best practice to filter obviously malicious
@@ -718,6 +631,13 @@ mode. 6rd in "hub and
     </section>
 
     <section anchor="Acknowledgements" title="Acknowledgements">
+      <t>The following people have participated as co-authors or provided
+      substantial contributionas to the orginal RFC 7084 document: 
+      Ralph Droms, Kirk Erichsen,
+      Fred Baker, Jason Weil, Lee Howard, Jean-Francois Tremblay, Yiu Lee,
+      John Jason Brzozowski, and Heather Kirksey. Thanks to Ole Troan for
+      editorship in the original RFC 6204 document.</t>
+
       <t>Thanks to the following people (in alphabetical order) for their
       guidance and feedback:</t>
 
@@ -745,11 +665,23 @@ mode. 6rd in "hub and
 
     <section anchor="Contributors" title="Contributors">
       <t>The following people have participated as co-authors or provided
-      substantial contributions to this document: Ralph Droms, Kirk Erichsen,
-      Fred Baker, Jason Weil, Lee Howard, Jean-Francois Tremblay, Yiu Lee,
-      John Jason Brzozowski, and Heather Kirksey. Thanks to Ole Troan for
-      editorship in the original RFC 6204 document.</t>
+      substantial contributions to this document: Tim Carlin and Marion Dillon.
+      </t>
+       
     </section>
+    <section title="Appendix: Changes from RFC 7084">
+       <t>There have been many editorial clarifications as well as
+       significant additions and updates. While this section highlights
+       some of the changes, readers should not rely on this section for a
+       comprehensive list of all changes. </t>
+       
+       <t>
+       <list style='numbers'>
+          <t>Updated to use RFC 8585 for transition technologies.</t>
+          <t>Removed transition technologies 6RD and DS-Lite requirements.</t>
+       </list>
+       </t>
+    </section> 
   </middle>
 
   <back>
@@ -758,13 +690,11 @@ mode. 6rd in "hub and
     <references title="Normative References">
       <?rfc include='reference.RFC.1122.xml'?>
       <?rfc include='reference.RFC.2119.xml'?>
-      <?rfc include='reference.RFC.2131.xml'?>
       <?rfc include='reference.RFC.2464.xml'?>
       <?rfc include='reference.RFC.2827.xml'?>
       <?rfc include='reference.RFC.3315.xml'?>
       <?rfc include='reference.RFC.3633.xml'?>
       <?rfc include='reference.RFC.3646.xml'?>
-      <?rfc include='reference.RFC.3704.xml'?>
       <?rfc include='reference.RFC.3736.xml'?>
       <?rfc include='reference.RFC.5905.xml'?>
       <?rfc include='reference.RFC.5908.xml'?>
@@ -779,16 +709,14 @@ mode. 6rd in "hub and
       <?rfc include='reference.RFC.4862.xml'?>
       <?rfc include='reference.RFC.5072.xml'?>
       <?rfc include='reference.RFC.5942.xml'?>
-      <?rfc include='reference.RFC.5969.xml'?>
       <?rfc include='reference.RFC.6144.xml'?>
       <?rfc include='reference.RFC.6177.xml'?>
       <?rfc include='reference.RFC.6092.xml'?>
       <?rfc include='reference.RFC.6106.xml'?>
-      <?rfc include='reference.RFC.6333.xml'?>
-      <?rfc include='reference.RFC.6334.xml'?>
       <?rfc include='reference.RFC.6434.xml'?>
       <?rfc include='reference.RFC.6603.xml'?>
       <?rfc include='reference.RFC.6887.xml'?>
+      <?rfc include='reference.RFC.8585.xml'?>
 
 <!-- I-D.droms-dhc-dhcpv6-solmaxrt-update.xml, Companion Document-->
 <reference anchor='RFC7083'>
@@ -808,26 +736,9 @@ mode. 6rd in "hub and
 <seriesInfo name='RFC' value='7083' />
 </reference>
 
-    </references>
+</references>
 
-    <references title="Informative References">
-
-
-<reference anchor='TR-069' target="http://www.broadband-forum.org/technical/trlist.php">
-<front>
-<title>CPE WAN Management Protocol</title>
-
-<author initials='' surname='' fullname=''>
-    <organization> Broadband Forum</organization>
-</author>
-
-<date month='July' year='2011' />
-
-
-</front>
-
-<seriesInfo name='TR-069 Amendment' value='4' />
-</reference>
+<references title="Informative References">
 
 <!--ietf-dhc-dhcpv6-stateful-issues-00, Active -->
 <reference anchor='DHCPV6-STATEFUL-ISSUES'>
