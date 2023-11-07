@@ -283,7 +283,7 @@
 
         <t><list style="format G-%d:">
             <t>An IPv6 CE router is an IPv6 node according to the <xref
-            target="RFC6434"> IPv6 Node Requirements specification</xref>.</t>
+            target="RFC8504"> IPv6 Node Requirements specification</xref>.</t>
 
             <t>The IPv6 CE router MUST implement ICMPv6 according to <xref
             target="RFC4443"></xref>. In particular, point-to-point links MUST
@@ -427,7 +427,7 @@
 
             <t>The IPv6 CE router SHOULD implement the Information Refresh
             Time option and associated client behavior as specified in <xref
-            target="RFC4242"></xref>.</t>
+            target="RFC8415"></xref>.</t>
           </list></t>
 
         <t>Prefix delegation requirements: <list style="format WPD-%d:">
@@ -574,7 +574,7 @@
             <t>The IPv6 CE router MUST support providing DNS information in
             the Router Advertisement Recursive DNS Server (RDNSS)
             and DNS Search List options. Both options are specified 
-            in <xref target="RFC6106"></xref>.</t>
+            in <xref target="RFC8106"></xref>.</t>
 
             <t>The IPv6 CE router SHOULD make available a subset of DHCPv6
             options (as listed in Section 21 of <xref
@@ -678,6 +678,10 @@
        <list style='numbers'>
           <t>Updated to use RFC 8585 for transition technologies.</t>
           <t>Removed transition technologies 6RD and DS-Lite requirements.</t>
+          <t>Updated to use RFC 8415 for DHCPv6</t>
+          <t>Updated to use RFC 7157 for mutlihoming discussion.</t>
+          <t>Updated to use RFC 8106 for DNS options in Router Advertisements.</t>
+          <t>Updated to use RFC 8405 for IPv6 node requirements.</t> 
        </list>
        </t>
     </section> 
@@ -692,11 +696,8 @@
       <?rfc include='reference.RFC.2464.xml'?>
       <?rfc include='reference.RFC.2827.xml'?>
       <?rfc include='reference.RFC.3646.xml'?>
-      <?rfc include='reference.RFC.5905.xml'?>
-      <?rfc include='reference.RFC.5908.xml'?>
       <?rfc include='reference.RFC.4191.xml'?>
       <?rfc include='reference.RFC.4193.xml'?>
-      <?rfc include='reference.RFC.4242.xml'?>
       <?rfc include='reference.RFC.4443.xml'?>
       <?rfc include='reference.RFC.4605.xml'?>
       <?rfc include='reference.RFC.4632.xml'?>
@@ -704,16 +705,18 @@
       <?rfc include='reference.RFC.4861.xml'?>
       <?rfc include='reference.RFC.4862.xml'?>
       <?rfc include='reference.RFC.5072.xml'?>
+      <?rfc include='reference.RFC.5905.xml'?>
+      <?rfc include='reference.RFC.5908.xml'?>
       <?rfc include='reference.RFC.5942.xml'?>
+      <?rfc include='reference.RFC.6092.xml'?>
       <?rfc include='reference.RFC.6144.xml'?>
       <?rfc include='reference.RFC.6177.xml'?>
-      <?rfc include='reference.RFC.6092.xml'?>
-      <?rfc include='reference.RFC.6106.xml'?>
-      <?rfc include='reference.RFC.6434.xml'?>
       <?rfc include='reference.RFC.6603.xml'?>
       <?rfc include='reference.RFC.6887.xml'?>
       <?rfc include='reference.RFC.7157.xml'?>
+      <?rfc include='reference.RFC.8106.xml'?>
       <?rfc include='reference.RFC.8415.xml'?>
+      <?rfc include='reference.RFC.8504.xml'?>
       <?rfc include='reference.RFC.8585.xml'?>
 
 </references>
