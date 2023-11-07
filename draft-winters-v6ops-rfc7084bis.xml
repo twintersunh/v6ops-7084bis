@@ -683,6 +683,8 @@
           <t>Updated to use RFC 7157 for mutlihoming discussion.</t>
           <t>Updated to use RFC 8106 for DNS options in Router Advertisements.</t>
           <t>Updated to use RFC 8405 for IPv6 node requirements.</t> 
+          <t>Updated S-2 requirement to a MUST to prevent spoofing attacks.</t> 
+          <t>Added a requirement to not utilize EUI-64 address.</t> 
        </list>
        </t>
     </section> 
