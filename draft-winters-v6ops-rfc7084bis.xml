@@ -1,40 +1,50 @@
-<?xml version="1.0" encoding="US-ASCII"?>
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc [
+  <!ENTITY nbsp    "&#160;">
+  <!ENTITY zwsp   "&#8203;">
+  <!ENTITY nbhy   "&#8209;">
+  <!ENTITY wj     "&#8288;">
+]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" ipr="trust200902" submissionType="IETF" obsoletes="7084" docName="draft-winters-v6ops-rfc7084bis-01">
+<rfc category="info" ipr="trust200902" submissionType="IETF" obsoletes="7084" docName="draft-winters-v6ops-rfc7084bis-02">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
-    <author fullname="Gabor Lencse" initials= "G." surname="Lencse">
-      <organization abbrev="The IPv6 Company">The IPv6 Company</organization>
-       <address>
-         <postal>
-            <street>Egyetem ter 1.</street>
-            <city>Gyor</city>  
-            <country>Hungary</country>
-         </postal>
-          <email>lencse@sze.hu</email>
-       </address>
-    </author>
-    <author fullname="Jordi Palet Martinez" initials= "J." surname="Palet Martinez">
-      <organization abbrev="The IPv6 Company">The IPv6 Company</organization>
+    <author fullname="Gábor Lencse" initials="G." surname="Lencse">
+      <organization>Széchenyi István University</organization>
       <address>
-         <postal>
-            <street>Molino de la Navata, 75</street>
-            <city>La Navata - Galapagar,</city>  
-            <region>Madrid</region>
-            <country>Spain</country>
-         </postal>
-         <email>jordi.palet@theipv6company.com</email>
-         <uri>http://www.theipv6company.com/</uri>
+        <postal>
+          <street>Egyetem tér 1.</street>
+          <city>Győr</city>
+          <region></region>
+          <code>H-9026</code>
+          <country>Hungary</country>
+        </postal>
+        <phone></phone>
+        <email>lencse@sze.hu</email>
+        <uri></uri>
       </address>
     </author>
-    <author fullname="Ben Patton" initials="P." surname="Patton">
+    <author fullname="Jordi Palet Martinez" initials="J" surname="Palet Martinez">
+      <organization>The IPv6 Company</organization>
+      <address>
+        <postal>
+          <street>Molino de la Navata, 75</street>
+          <city>La Navata - Galapagar</city>
+          <region>Madrid</region>
+          <code>28420</code>
+          <country>Spain</country>
+        </postal>
+        <email>jordi.palet@theipv6company.com</email>
+        <uri>http://www.theipv6company.com/</uri>
+      </address>
+    </author>
+    <author fullname="Ben Patton" initials="B." surname="Patton">
      <organization abbrev="UNH-IOL">University of New Hampshire, Interoperability Lab (UNH-IOL)</organization>
       <address>
         <postal>
@@ -98,7 +108,7 @@
       available for deploying IPv6 in service provider access networks.</t>
 
       <t>The document does not cover the IP transition technologies available 
-      to IPv6 CE Router.  For information about IP transition technologies 
+      to IPv6 CE Routers.  For information about IP transition technologies 
       please refer to <xref target="RFC8585"></xref>.</t>
 
       <section title="Requirements Language">
@@ -245,8 +255,8 @@
   demarcation point between two networks by providing a ULA boundary, a
   multicast zone boundary, and ingress and egress traffic filters.</t>
 
-          <t>At the time of this writing, several host implementations do not
-          handle the case where they have an IPv6 address configured and no
+          <t> Host implementations may not handle the case where they have an 
+          IPv6 address configured and no
           IPv6 connectivity, either because the address itself has a limited
           topological reachability (e.g., ULA) or because the IPv6 CE router
           is not connected to the IPv6 network on its WAN interface. To
@@ -485,6 +495,17 @@
 
             <t>The IPv6 CE router SHOULD support the <xref
             target="RFC6603"></xref> Prefix Exclude option.</t>
+
+            <t>IPv6 CE routers SHOULD NOT automatically send a DHCPv6 message with 
+              IA_PD RELEASE messages upon restart events. See <xref target="RFC9096"> 
+              Section 3.1</xref> for further details.</t>
+
+            <t>CE routers MUST by default use a WAN-side Identity
+              Association IDentifier (IAID) value that is stable between CE
+              router restarts, DHCPv6 client restarts, or interface state
+              changes (e.g., transient PPP interfaces), unless the CE router
+              employs the IAID techniques discussed in <xref target="RFC7844">Section 4.5 of 
+              </xref>. See <xref target="RFC9096"> Section 3.2 of </xref>for further details.</t>
           </list></t>
       </section>
 
@@ -585,19 +606,22 @@
             target="RFC8415"></xref>) received from the DHCPv6 client on its
             WAN interface to its LAN-side DHCPv6 server.</t>
 
-            <t>If the delegated prefix changes, i.e., the current prefix is
-            replaced with a new prefix without any overlapping time period,
-            then the IPv6 CE router MUST immediately advertise the old prefix
-            with a Preferred Lifetime of zero and a Valid Lifetime of either
-            a) zero or b) the lower of the current Valid Lifetime and two
-            hours (which must be decremented in real time) in a Router
-            Advertisement message as described in Section 5.5.3, (e) of <xref
-            target="RFC4862"></xref>.</t>
+            <t>The IPv6 CE routers MUST signal stale configuration information as
+              specified in <xref target="RFC9096"> Section 3.5 of </xref></t>
 
             <t>The IPv6 CE router MUST send an ICMPv6 Destination Unreachable
             message, code 5 (Source address failed ingress/egress policy) for
             packets forwarded to it that use an address from a prefix that has
             been invalidated.</t>
+
+            <t>The IPv6 CE routers MUST NOT advertise prefixes via SLAAC or assign
+              addresses or delegate prefixes via DHCPv6 on the LAN side using
+              lifetimes that exceed the remaining lifetimes of the corresponding
+              prefixes learned on the WAN side via DHCPv6.</t>
+
+            <t>The IPv6 CE routers SHOULD advertise capped SLAAC option lifetimes,
+              capped DHCPv6 IA Address option lifetimes, and capped IA Prefix
+              option lifetimes, as specified in <xref target="RFC9096"> of Section 3.4.</xref></t>
           </list></t>
       </section>
 
@@ -677,6 +701,7 @@
        
        <t>
        <list style='numbers'>
+          <t>Updated with RFC 9096 changes for renumbering.</t>
           <t>Updated to use RFC 8585 for transition technologies.</t>
           <t>Removed transition technologies 6RD and DS-Lite requirements.</t>
           <t>Updated to use RFC 8415 for DHCPv6</t>
@@ -718,11 +743,13 @@
       <?rfc include='reference.RFC.6887.xml'?>
       <?rfc include='reference.RFC.7157.xml'?>
       <?rfc include='reference.RFC.7721.xml'?>
+      <?rfc include='reference.RFC.7844.xml'?>
       <?rfc include='reference.RFC.8064.xml'?>
       <?rfc include='reference.RFC.8106.xml'?>
       <?rfc include='reference.RFC.8415.xml'?>
       <?rfc include='reference.RFC.8504.xml'?>
       <?rfc include='reference.RFC.8585.xml'?>
+      <?rfc include='reference.RFC.9096.xml'?>
 
 </references>
 
@@ -740,6 +767,5 @@
         </front>
       </reference>
     </references>
-<?rfc rfcedstyle="yes"?>
   </back>
 </rfc>
