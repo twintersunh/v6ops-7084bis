@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="info" ipr="trust200902" submissionType="IETF" obsoletes="7084" docName="draft-winters-v6ops-rfc7084bis-02">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-winters-v6ops-rfc7084bis-03">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -86,16 +86,7 @@
       <t>This document defines basic IPv6 features for a residential or small-
          office router, referred to as an "IPv6 CE router", in order to
          establish an industry baseline for features to be implemented on such
-         a router.
-      </t>
-      <t>These routers typically also support IPv4.
-      </t>
-
-      <t>Mixed environments of dual-stack hosts and IPv6-only hosts (behind
-      the CE router) can be more complex if the IPv6-only devices are using a
-      translator to access IPv4 servers <xref target="RFC6144"></xref>.
-      Support for such mixed environments is not in scope of this
-      document.</t>
+         a router.</t>
 
       <t>This document specifies how an IPv6 CE router automatically
       provisions its WAN interface, acquires address space for provisioning of
@@ -127,8 +118,6 @@
            particular subset of currently deploying and planned common IPv6
            access networks.
          </t>
-
-          
       </section>
     </section>
 
@@ -412,7 +401,8 @@
             as DHCPv6, to use.  If the CE router implements NTP, it requests the NTP 
             Server DHCPv6 option <xref target="RFC5908"></xref> and uses the received 
             list of servers as primary time reference, unless explicitly configured
-            otherwise. LAN side support of NTP is out of scope for this document.</t>
+            otherwise. The IPv6 CE Router SHOULD use the WAN NTP list of servers in response to 
+            DHCPv6 message requesting NTP Server DHCPv6 option on the LAN side.</t>
 
             <t>If the IPv6 CE router receives a Router Advertisement message
             (described in <xref target="RFC4861"></xref>) with the M flag set
@@ -622,6 +612,9 @@
             <t>The IPv6 CE routers SHOULD advertise capped SLAAC option lifetimes,
               capped DHCPv6 IA Address option lifetimes, and capped IA Prefix
               option lifetimes, as specified in <xref target="RFC9096"> of Section 3.4.</xref></t>
+
+            <t>The IPv6 CE routers SHOULD implement <xref target="RFC9131"></xref> on the LAN to avoid
+               packet lost.</t>
           </list></t>
       </section>
 
@@ -645,7 +638,8 @@
             it.</t>
 
             <t>The IPv6 CE router MUST support ingress filtering in
-            accordance with BCP 38 <xref target="RFC2827"></xref>.</t> 
+            accordance with BCP 38 <xref target="RFC2827"></xref>. This SHOULD 
+            be enabled by default but users SHOULD be able to disable this.</t> 
 
             <t>If the IPv6 CE router firewall is configured to filter incoming
             tunneled data, the firewall SHOULD provide the capability to
@@ -737,7 +731,6 @@
       <?rfc include='reference.RFC.5908.xml'?>
       <?rfc include='reference.RFC.5942.xml'?>
       <?rfc include='reference.RFC.6092.xml'?>
-      <?rfc include='reference.RFC.6144.xml'?>
       <?rfc include='reference.RFC.6177.xml'?>
       <?rfc include='reference.RFC.6603.xml'?>
       <?rfc include='reference.RFC.6887.xml'?>
@@ -750,7 +743,7 @@
       <?rfc include='reference.RFC.8504.xml'?>
       <?rfc include='reference.RFC.8585.xml'?>
       <?rfc include='reference.RFC.9096.xml'?>
-
+      <?rfc include='reference.RFC.9131.xml'?>
 </references>
 
 <references title="Informative References">
