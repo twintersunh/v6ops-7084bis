@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-00">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-01">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -136,7 +136,7 @@
 
           <t hangText="LAN Interface">an IPv6 CE router's attachment to a link
           in the end-user network. Examples are Ethernet (simple or bridged),
-          802.11 wireless, or other LAN technologies. An IPv6 CE router may
+          IEEE 802.11 wireless, or other LAN technologies. An IPv6 CE router may
           have one or more network-layer LAN interfaces.</t>
 
           <t hangText="Service Provider">an entity that provides access to the
@@ -325,7 +325,7 @@
         Interface Specification (DOCSIS), PPP, or others.</t>
 
         <t>WAN-side requirements: <list style="format W-%d:">
-            <t>When the router is attached to the WAN interface link, it MUST
+            <t>When the IPv6 CE router is attached to the WAN interface link, it MUST
             act as an IPv6 host for the purposes of stateless <xref
             target="RFC4862"></xref> or stateful <xref
             target="RFC8415"></xref> interface address assignment.</t>
@@ -343,7 +343,7 @@
             routing table with the discovered router's address as the next
             hop.</t>
 
-            <t>The router MUST act as a requesting router for the purposes of
+            <t>The IPv6 CE router MUST act as a requesting router for the purposes of
             DHCPv6 prefix delegation (<xref target="RFC8415"></xref>).</t>
 
             <t>The IPv6 CE router MUST use a persistent DHCP Unique Identifier
@@ -398,7 +398,7 @@
             <t>The IPv6 CE router SHOULD implement the Network Time
             Protocol (NTP) as specified in <xref target="RFC5905"></xref> to provide 
             a time reference common to the service provider for other protocols, such 
-            as DHCPv6, to use.  If the CE router implements NTP, it requests the NTP 
+            as DHCPv6, to use.  If the IPv6 CE router implements NTP, it requests the NTP 
             Server DHCPv6 option <xref target="RFC5908"></xref> and uses the received 
             list of servers as primary time reference, unless explicitly configured
             otherwise. The IPv6 CE Router SHOULD use the WAN NTP list of servers in response to 
@@ -415,7 +415,7 @@
             one of its internal virtual network interfaces, unless configured
             to require a global IPv6 address on the WAN interface.</t>
 
-            <t>The CE router MUST support the SOL_MAX_RT 
+            <t>The IPv6 CE router MUST support the SOL_MAX_RT 
                option <xref target="RFC8415"></xref>
                and request the SOL_MAX_RT option in an Option Request Option (ORO).</t>
 
@@ -459,7 +459,7 @@
             any RA or received an RA with the M and the O bits set to zero is 
             out of scope for this document.</t>
 
-            <t>Any packet received by the CE router with a destination
+            <t>Any packet received by the IPv6 CE router with a destination
                address in the prefix(es) delegated to the CE router but
                not in the set of prefixes assigned by the CE router to the
                LAN must be dropped.  In other words, the next hop for the
@@ -490,7 +490,7 @@
               IA_PD RELEASE messages upon restart events. See <xref target="RFC9096"> 
               Section 3.1</xref> for further details.</t>
 
-            <t>CE routers MUST by default use a WAN-side Identity
+            <t>IPv6 CE routers MUST by default use a WAN-side Identity
               Association IDentifier (IAID) value that is stable between CE
               router restarts, DHCPv6 client restarts, or interface state
               changes (e.g., transient PPP interfaces), unless the CE router
@@ -597,7 +597,7 @@
             WAN interface to its LAN-side DHCPv6 server.</t>
 
             <t>The IPv6 CE routers MUST signal stale configuration information as
-              specified in <xref target="RFC9096"> Section 3.5 of </xref></t>
+              specified in <xref target="RFC9096"> Section 3.5 of </xref>.</t>
 
             <t>The IPv6 CE router MUST send an ICMPv6 Destination Unreachable
             message, code 5 (Source address failed ingress/egress policy) for
@@ -611,7 +611,7 @@
 
             <t>The IPv6 CE routers SHOULD advertise capped SLAAC option lifetimes,
               capped DHCPv6 IA Address option lifetimes, and capped IA Prefix
-              option lifetimes, as specified in <xref target="RFC9096"> of Section 3.4.</xref></t>
+              option lifetimes, as specified in <xref target="RFC9096"> of Section 3.4</xref>.</t>
 
             <t>The IPv6 CE routers SHOULD implement <xref target="RFC9131"></xref> on the LAN to avoid
                packet lost.</t>
