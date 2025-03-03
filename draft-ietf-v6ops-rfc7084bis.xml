@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-01">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-02">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -600,9 +600,9 @@
               specified in <xref target="RFC9096"> Section 3.5 of </xref>.</t>
 
             <t>The IPv6 CE router MUST send an ICMPv6 Destination Unreachable
-            message, code 5 (Source address failed ingress/egress policy) for
-            packets forwarded to it that use an address from a prefix that has
-            been invalidated.</t>
+              message, code 5 (Source address failed ingress/egress policy) for
+              packets forwarded to it that use an address from a prefix that has
+              been invalidated.</t>
 
             <t>The IPv6 CE routers MUST NOT advertise prefixes via SLAAC or assign
               addresses or delegate prefixes via DHCPv6 on the LAN side using
@@ -615,6 +615,14 @@
 
             <t>The IPv6 CE routers SHOULD implement <xref target="RFC9131"></xref> on the LAN to avoid
                packet lost.</t>
+
+            <t>The IPv6 CE Router MUST be configured to respond to Router Solicitations with 
+            a unicast Router Advertisements, as specified in <xref target="RFC7772"></xref>.</t>
+
+            <t>The IPv6 CE Router SHOULD have a default value MaxRtrAdvInterval of 600 seconds and
+            a MinRtrAdvInterval of 300 seconds from <xref target="RFC4861"></xref>. Note, 
+            the interval at which Router Advertisements are transmited must be lower then the smallest
+            address lifetimes advertised.</t>
           </list></t>
       </section>
 
@@ -739,6 +747,7 @@
       <?rfc include='reference.RFC.6887.xml'?>
       <?rfc include='reference.RFC.7157.xml'?>
       <?rfc include='reference.RFC.7721.xml'?>
+      <?rfc include='reference.RFC.7772.xml'?>
       <?rfc include='reference.RFC.7844.xml'?>
       <?rfc include='reference.RFC.8064.xml'?>
       <?rfc include='reference.RFC.8106.xml'?>
