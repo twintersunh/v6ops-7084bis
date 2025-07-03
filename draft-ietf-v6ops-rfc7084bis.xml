@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-02">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-03">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -307,6 +307,15 @@
             interfaces by immediately transmitting one or more Router
             Advertisement messages with the "Router Lifetime" field set to
             zero <xref target="RFC4861"></xref>.</t>
+
+            <t>The IPv6 CE router MUST NOT forward packets with Link-Local source 
+            or destination addresses to other links <xref target="RFC4291"></xref>], Section 2.5.6. 
+            However, there is a corner case discussed in [RFC4007], Section 9, 
+            where a router is expected to forward a packet with Link-Local source 
+            or destination addresses back to the link it was received on, 
+            if appropriate, and subject to Neighbor Discovery resolution of the 
+            destination address.</t>
+
           </list></t>
       </section>
 
@@ -491,7 +500,7 @@
               Section 3.1</xref> for further details.</t>
 
             <t>IPv6 CE routers MUST by default use a WAN-side Identity
-              Association IDentifier (IAID) value that is stable between CE
+              Association Identifier (IAID) value that is stable between CE
               router restarts, DHCPv6 client restarts, or interface state
               changes (e.g., transient PPP interfaces), unless the CE router
               employs the IAID techniques discussed in <xref target="RFC7844">Section 4.5 of 
@@ -623,6 +632,9 @@
             a MinRtrAdvInterval of 300 seconds from <xref target="RFC4861"></xref>. Note, 
             the interval at which Router Advertisements are transmited must be lower then the smallest
             address lifetimes advertised.</t>
+
+            <t>The IPv6 CE routers SHOULD implement SLAAC renumbering events as documented in 
+            <xref target="I-D.ietf-6man-slaac-renum"></xref>.</t>
           </list></t>
       </section>
 
@@ -665,7 +677,7 @@
       editorship in the original RFC 6204 document.</t>
 
       <t>Thanks to the following people (in alphabetical order) for their
-      guidance and feedback:</t>
+      guidance and feedback on 7084:</t>
 
       <t>Mikael Abrahamsson, Tore Anderson, Merete Asak, Rajiv Asati, Scott
       Beuker, Mohamed Boucadair, Rex Bullinger, Brian Carpenter, Tassos
@@ -677,6 +689,11 @@
       Antonio Querubin, Daniel Roesen, Hiroki Sato, Teemu Savolainen, Matt
       Schmitt, David Thaler, Mark Townsley, Sean Turner, Bernie Volz, Dan Wing, 
       Timothy Winters, James Woodyatt, Carl Wuyts, and Cor Zwart.</t>
+
+      <t>Thanks to the following people (in alphabetical order) for their
+      guidance and feedback on 7084-bis:</t>
+
+      <t>Brian Carpenter, Lorenzo Colitti, David Farmer and Ted Lemon</t>
 
       <t>This document is based in part on CableLabs' eRouter specification.
       The authors wish to acknowledge the additional contributors from the
@@ -703,6 +720,9 @@
        
        <t>
        <list style='numbers'>
+          <t>Added support for SLAAC renumbering.</t>
+          <t>Clarified that Link-Local packets should not be forwarded.</t>
+          <t>Added LAN requirements for Router Advertisements Intervals.</t>
           <t>Updated to a BCP from Informational.</t>
           <t>Added support for RFC 9131.</t>
           <t>Added text for NTP Servers relayed from WAN to LAN.</t>
@@ -731,6 +751,7 @@
       <?rfc include='reference.RFC.3646.xml'?>
       <?rfc include='reference.RFC.4191.xml'?>
       <?rfc include='reference.RFC.4193.xml'?>
+      <?rfc include='reference.RFC.4291.xml'?>
       <?rfc include='reference.RFC.4443.xml'?>
       <?rfc include='reference.RFC.4605.xml'?>
       <?rfc include='reference.RFC.4632.xml'?>
@@ -756,6 +777,7 @@
       <?rfc include='reference.RFC.8585.xml'?>
       <?rfc include='reference.RFC.9096.xml'?>
       <?rfc include='reference.RFC.9131.xml'?>
+      <?rfc include='reference.I-D.ietf-6man-slaac-renum.xml'?>
 </references>
 
 <references title="Informative References">
