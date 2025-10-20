@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-03">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-04">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -315,6 +315,8 @@
             or destination addresses back to the link it was received on, 
             if appropriate, and subject to Neighbor Discovery resolution of the 
             destination address.</t>
+
+            <t>The IPv6 CE Router MUST support Hop-by-Hop Option processing as described in <xref target="RFC9673"></xref>.</t> 
 
           </list></t>
       </section>
@@ -693,7 +695,7 @@
       <t>Thanks to the following people (in alphabetical order) for their
       guidance and feedback on 7084-bis:</t>
 
-      <t>Brian Carpenter, Lorenzo Colitti, David Farmer and Ted Lemon</t>
+      <t>Brian Carpenter, Lorenzo Colitti, David Farmer, Bob Hinden and Ted Lemon.</t>
 
       <t>This document is based in part on CableLabs' eRouter specification.
       The authors wish to acknowledge the additional contributors from the
@@ -777,6 +779,7 @@
       <?rfc include='reference.RFC.8585.xml'?>
       <?rfc include='reference.RFC.9096.xml'?>
       <?rfc include='reference.RFC.9131.xml'?>
+      <?rfc include='reference.RFC.9673.xml'?>
       <?rfc include='reference.I-D.ietf-6man-slaac-renum.xml'?>
 </references>
 
