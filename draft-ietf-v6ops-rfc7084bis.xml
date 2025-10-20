@@ -630,13 +630,62 @@
             <t>The IPv6 CE Router MUST be configured to respond to Router Solicitations with 
             a unicast Router Advertisements, as specified in <xref target="RFC7772"></xref>.</t>
 
-            <t>The IPv6 CE Router SHOULD have a default value MaxRtrAdvInterval of 600 seconds and
-            a MinRtrAdvInterval of 300 seconds from <xref target="RFC4861"></xref>. Note, 
+            <t>The IPv6 CE Router SHOULD have a default value MaxRtrAdvInterval of 180 seconds and
+            a MinRtrAdvInterval of 120 seconds from <xref target="RFC4861"></xref>. Note, 
             the interval at which Router Advertisements are transmited must be lower then the smallest
             address lifetimes advertised.</t>
 
             <t>The IPv6 CE routers SHOULD implement SLAAC renumbering events as documented in 
             <xref target="I-D.ietf-6man-slaac-renum"></xref>.</t>
+
+            <t>The IPv6 CE Router MUST NOT enable IPv6 Router Advertisement Guard, <xref target="RFC6105"></xref>, by 
+            default.</t>
+      
+          </list></t>
+          <t>LAN Prefix Delegation requirements (RFC 9818):<list style="format LPD-%d:"> 
+
+           <t>Each IPv6 CE router <bcp14>MUST</bcp14> support IPv6 prefix assignment according to <xref target="RFC8415" section="13.3"/> 
+           (Identity Association for Prefix Delegation (IA_PD) option) on its LAN interface(s).</t>
+           
+           <t>Each IPv6 CE routers <bcp14>MUST</bcp14> assign a prefix from the delegated prefix as specified by L-2. 
+           If insufficient prefixes are available, the IPv6 CE router <bcp14>MUST</bcp14> log a system management error.</t>
+
+           <t>The prefix assigned to a link <bcp14>MUST NOT</bcp14> change in the absence of a local policy or a 
+           topology change.</t>
+
+           <t>After LAN link prefix assignments, the IPv6 CE router <bcp14>MUST</bcp14> keep the remaining IPv6 prefixes
+           available to other routers via Prefix Delegation.</t>
+
+           <t>IPv6 CE routers <bcp14>MUST</bcp14> maintain a local routing table that is dynamically updated with leases 
+           and the associated next hops as they are delegated to clients. Packets with destination addresses in a delegated 
+           prefix MUST be routed to that prefix regardless of which interface they are received on. When a delegated prefix is released 
+           or expires, the associated route <bcp14>MUST</bcp14> be removed from the IPv6 CE router's routing table. A delegated 
+           prefix expires when the valid lifetime assigned in the IA_PD expires without being renewed. When a prefix
+           is released or expires, it <bcp14>MUST</bcp14> be returned the pool of available prefixes.</t>
+
+           <t>By default, the IPv6 CE router filtering rules <bcp14>MUST</bcp14> allow forwarding of packets with an outer 
+           IPv6 header containing a source address belonging to delegated prefixes, along with reciprocal 
+           packets from the same flow, following the recommendations of <xref target="RFC6092"/>. This updates WPD-5 of to not drop packets 
+           from prefixes that have been delegated. IPv6 CE routers <bcp14>MUST</bcp14> continue to drop packets, including destination address, 
+           that are not assigned to the LAN or delegated.</t>
+
+           <t>The IPv6 CE routers <bcp14>MUST</bcp14> provision IA_PD prefixes with a prefix-length of 64 on the LAN-facing interface 
+           unless configured to use a different prefix-length by the CE router administrator. The prefix-length
+           of 64 is used as that is the current prefix-length supported by SLAAC <xref target="RFC4862"/>. For hierarchical 
+           prefix delegation, a prefix-length shorter than 64 may be configured.</t>
+
+           <t>IPv6 CE routers configured to generate a ULA prefix as defined in ULA-1  
+           <bcp14>MUST</bcp14> continue to provision available GUA IPv6 prefixes.</t>
+
+           <t>If an IPv6 CE router is provisioning both a ULA and GUA via prefix delegation, the GUA <bcp14>SHOULD</bcp14> 
+           appear first in the DHCPv6 packets.</t>
+
+           <t>IPv6 CE routers <bcp14>MUST NOT</bcp14> delegate prefixes via DHCPv6 on the LAN using lifetimes that
+           exceed the remaining lifetimes of the corresponding prefixes learned on the WAN.</t>
+           
+           <t>IPv6 CE Routers <bcp14>SHOULD</bcp14> utilize the P Flag, as described in <xref target="RFC9762"></xref>, if
+           they intend for every client to obtain prefixes for the network.</t>
+
           </list></t>
       </section>
 
@@ -722,6 +771,10 @@
        
        <t>
        <list style='numbers'>
+          <t>Added P flag, and when it can be supported.</t>
+          <t>Added PRefix Delegation on LAN requirements, RFC 9818</t>
+          <t>Added RA Guard, which MUST NOT be enabled by default.</t>
+          <t>Added Hop-by-Hop Processing to the General Section. </t>
           <t>Added support for SLAAC renumbering.</t>
           <t>Clarified that Link-Local packets should not be forwarded.</t>
           <t>Added LAN requirements for Router Advertisements Intervals.</t>
@@ -765,6 +818,7 @@
       <?rfc include='reference.RFC.5908.xml'?>
       <?rfc include='reference.RFC.5942.xml'?>
       <?rfc include='reference.RFC.6092.xml'?>
+      <?rfc include='reference.RFC.6105.xml'?>
       <?rfc include='reference.RFC.6177.xml'?>
       <?rfc include='reference.RFC.6603.xml'?>
       <?rfc include='reference.RFC.6887.xml'?>
@@ -780,6 +834,7 @@
       <?rfc include='reference.RFC.9096.xml'?>
       <?rfc include='reference.RFC.9131.xml'?>
       <?rfc include='reference.RFC.9673.xml'?>
+      <?rfc include='reference.RFC.9762.xml'?>
       <?rfc include='reference.I-D.ietf-6man-slaac-renum.xml'?>
 </references>
 
