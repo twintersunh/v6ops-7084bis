@@ -99,7 +99,7 @@
       available for deploying IPv6 in service provider access networks.</t>
 
       <t>The document does not cover the IP transition technologies available 
-      to IPv6 CE Routers.  For information about IP transition technologies 
+      to IPv6 CE routers.  For information about IP transition technologies 
       please refer to <xref target="RFC8585"></xref>.</t>
 
       <section title="Requirements Language">
@@ -316,7 +316,7 @@
             if appropriate, and subject to Neighbor Discovery resolution of the 
             destination address.</t>
 
-            <t>The IPv6 CE Router MUST support Hop-by-Hop Option processing as described in <xref target="RFC9673"></xref>.</t> 
+            <t>The IPv6 CE router MUST support Hop-by-Hop Option processing as described in <xref target="RFC9673"></xref>.</t> 
 
           </list></t>
       </section>
@@ -412,7 +412,7 @@
             as DHCPv6, to use.  If the IPv6 CE router implements NTP, it requests the NTP 
             Server DHCPv6 option <xref target="RFC5908"></xref> and uses the received 
             list of servers as primary time reference, unless explicitly configured
-            otherwise. The IPv6 CE Router SHOULD use the WAN NTP list of servers in response to 
+            otherwise. The IPv6 CE router SHOULD use the WAN NTP list of servers in response to 
             DHCPv6 message requesting NTP Server DHCPv6 option on the LAN side.</t>
 
             <t>If the IPv6 CE router receives a Router Advertisement message
@@ -440,8 +440,8 @@
             Time option and associated client behavior as specified in <xref
             target="RFC8415"></xref>.</t>
 
-            <t>The IPv6 CE Router MUST NOT use an EUI-64 based address as 
-            discussed in <xref target="RFC7721"></xref>. IPv6 CE Router SHOULD follow
+            <t>The IPv6 CE router MUST NOT use an EUI-64 based address as 
+            discussed in <xref target="RFC7721"></xref>. IPv6 CE router SHOULD follow
             <xref target="RFC8064"></xref> when generating an IPv6 address.</t>
           </list></t>
 
@@ -607,7 +607,7 @@
             target="RFC8415"></xref>) received from the DHCPv6 client on its
             WAN interface to its LAN-side DHCPv6 server.</t>
 
-            <t>The IPv6 CE routers MUST signal stale configuration information as
+            <t>The IPv6 CE router MUST signal stale configuration information as
               specified in <xref target="RFC9096"> Section 3.5 of </xref>.</t>
 
             <t>The IPv6 CE router MUST send an ICMPv6 Destination Unreachable
@@ -615,30 +615,30 @@
               packets forwarded to it that use an address from a prefix that has
               been invalidated.</t>
 
-            <t>The IPv6 CE routers MUST NOT advertise prefixes via SLAAC or assign
+            <t>The IPv6 CE router MUST NOT advertise prefixes via SLAAC or assign
               addresses or delegate prefixes via DHCPv6 on the LAN side using
               lifetimes that exceed the remaining lifetimes of the corresponding
               prefixes learned on the WAN side via DHCPv6.</t>
 
-            <t>The IPv6 CE routers SHOULD advertise capped SLAAC option lifetimes,
+            <t>The IPv6 CE router SHOULD advertise capped SLAAC option lifetimes,
               capped DHCPv6 IA Address option lifetimes, and capped IA Prefix
-              option lifetimes, as specified in <xref target="RFC9096"> of Section 3.4</xref>.</t>
+              option lifetimes, as specified in <xref target="RFC9096"> Section 3.4 of</xref>.</t>
 
-            <t>The IPv6 CE routers SHOULD implement <xref target="RFC9131"></xref> on the LAN to avoid
-               packet lost.</t>
+            <t>The IPv6 CE router SHOULD implement <xref target="RFC9131"></xref> on the LAN to avoid
+               packet loss.</t>
 
-            <t>The IPv6 CE Router MUST be configured to respond to Router Solicitations with 
+            <t>The IPv6 CE router MUST be configured to respond to Router Solicitations with 
             a unicast Router Advertisements, as specified in <xref target="RFC7772"></xref>.</t>
 
-            <t>The IPv6 CE Router SHOULD have a default value MaxRtrAdvInterval of 180 seconds and
-            a MinRtrAdvInterval of 120 seconds from <xref target="RFC4861"></xref>. Note, 
+            <t>The IPv6 CE router SHOULD have a default MaxRtrAdvInterval value of 180 seconds and
+            default MinRtrAdvInterval value of 120 seconds from <xref target="RFC4861"></xref>. Note, 
             the interval at which Router Advertisements are transmited must be lower then the smallest
             address lifetimes advertised.</t>
 
-            <t>The IPv6 CE routers SHOULD implement SLAAC renumbering events as documented in 
+            <t>The IPv6 CE router SHOULD implement SLAAC renumbering events as documented in 
             <xref target="I-D.ietf-6man-slaac-renum"></xref>.</t>
 
-            <t>The IPv6 CE Router MUST NOT enable IPv6 Router Advertisement Guard, <xref target="RFC6105"></xref>, by 
+            <t>The IPv6 CE router MUST NOT enable IPv6 Router Advertisement Guard, <xref target="RFC6105"></xref>, by 
             default.</t>
       
           </list></t>
@@ -647,7 +647,7 @@
            <t>Each IPv6 CE router <bcp14>MUST</bcp14> support IPv6 prefix assignment according to <xref target="RFC8415" section="13.3"/> 
            (Identity Association for Prefix Delegation (IA_PD) option) on its LAN interface(s).</t>
            
-           <t>Each IPv6 CE routers <bcp14>MUST</bcp14> assign a prefix from the delegated prefix as specified by L-2. 
+           <t>Each IPv6 CE router <bcp14>MUST</bcp14> assign a prefix from the delegated prefix as specified by L-2. 
            If insufficient prefixes are available, the IPv6 CE router <bcp14>MUST</bcp14> log a system management error.</t>
 
            <t>The prefix assigned to a link <bcp14>MUST NOT</bcp14> change in the absence of a local policy or a 
@@ -663,13 +663,13 @@
            prefix expires when the valid lifetime assigned in the IA_PD expires without being renewed. When a prefix
            is released or expires, it <bcp14>MUST</bcp14> be returned the pool of available prefixes.</t>
 
-           <t>By default, the IPv6 CE router filtering rules <bcp14>MUST</bcp14> allow forwarding of packets with an outer 
+           <t>By default, the IPv6 CE router's filtering rules <bcp14>MUST</bcp14> allow forwarding of packets with an outer 
            IPv6 header containing a source address belonging to delegated prefixes, along with reciprocal 
-           packets from the same flow, following the recommendations of <xref target="RFC6092"/>. This updates WPD-5 of to not drop packets 
-           from prefixes that have been delegated. IPv6 CE routers <bcp14>MUST</bcp14> continue to drop packets, including destination address, 
-           that are not assigned to the LAN or delegated.</t>
+           packets from the same flow, following the recommendations of <xref target="RFC6092"/>. This updates WPD-5 to not drop packets 
+           from prefixes that have been delegated. IPv6 CE routers <bcp14>MUST</bcp14> continue to drop packets with destination addresses
+           in prefixes that are not assigned to the LAN or delegated.</t>
 
-           <t>The IPv6 CE routers <bcp14>MUST</bcp14> provision IA_PD prefixes with a prefix-length of 64 on the LAN-facing interface 
+           <t>The IPv6 CE router <bcp14>MUST</bcp14> provision IA_PD prefixes with a prefix-length of 64 on the LAN-facing interface 
            unless configured to use a different prefix-length by the CE router administrator. The prefix-length
            of 64 is used as that is the current prefix-length supported by SLAAC <xref target="RFC4862"/>. For hierarchical 
            prefix delegation, a prefix-length shorter than 64 may be configured.</t>
@@ -683,7 +683,7 @@
            <t>IPv6 CE routers <bcp14>MUST NOT</bcp14> delegate prefixes via DHCPv6 on the LAN using lifetimes that
            exceed the remaining lifetimes of the corresponding prefixes learned on the WAN.</t>
            
-           <t>IPv6 CE Routers <bcp14>SHOULD</bcp14> utilize the P Flag, as described in <xref target="RFC9762"></xref>, if
+           <t>IPv6 CE routers <bcp14>SHOULD</bcp14> utilize the P Flag, as described in <xref target="RFC9762"></xref>, if
            they intend for every client to obtain prefixes for the network.</t>
 
           </list></t>
