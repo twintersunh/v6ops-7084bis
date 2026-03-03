@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-04">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-05">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -443,6 +443,11 @@
             <t>The IPv6 CE router MUST NOT use an EUI-64 based address as 
             discussed in <xref target="RFC7721"></xref>. IPv6 CE router SHOULD follow
             <xref target="RFC8064"></xref> when generating an IPv6 address.</t>
+
+            <t> If the value of the O or M flag in Router Advertisement changes from TRUE to FALSE, 
+            the CE router MUST continue running the stateful address autoconfiguration
+            protocol, i.e., the change in the value of Flags has no effect. In particular, a CE router MUST NOT reinvoke stateful
+            configuration if it is already participating in the stateful protocol as a result of an earlier advertisement.</t>
           </list></t>
 
         <t>Prefix delegation requirements: <list style="format WPD-%d:">
@@ -630,8 +635,8 @@
             <t>The IPv6 CE router MUST be configured to respond to Router Solicitations with 
             a unicast Router Advertisements, as specified in <xref target="RFC7772"></xref>.</t>
 
-            <t>The IPv6 CE router SHOULD have a default MaxRtrAdvInterval value of 180 seconds and
-            default MinRtrAdvInterval value of 120 seconds from <xref target="RFC4861"></xref>. Note, 
+            <t>The IPv6 CE router SHOULD have a default MaxRtrAdvInterval value of 300 seconds and
+            default MinRtrAdvInterval value of 100 seconds from <xref target="RFC4861"></xref>. Note, 
             the interval at which Router Advertisements are transmited must be lower then the smallest
             address lifetimes advertised.</t>
 
