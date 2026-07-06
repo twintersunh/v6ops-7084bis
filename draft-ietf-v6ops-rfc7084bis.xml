@@ -783,6 +783,8 @@
           <t>Added P flag, and when it can be supported.</t>
           <t>Added PRefix Delegation on LAN requirements, RFC 9818</t>
           <t>Added RA Guard, which MUST NOT be enabled by default.</t>
+          <t>Added an exception to the RA Guard requirement for backup routers and SNAC deployments.</t>
+          <t>Added support for DNS over HTTPS (RFC 8484) and DNS over TLS (RFC 7858).</t>
           <t>Added Hop-by-Hop Processing to the General Section. </t>
           <t>Added support for SLAAC renumbering.</t>
           <t>Clarified that Link-Local packets should not be forwarded.</t>
@@ -796,7 +798,7 @@
           <t>Updated to use RFC 8415 for DHCPv6</t>
           <t>Updated to use RFC 7157 for mutlihoming discussion.</t>
           <t>Updated to use RFC 8106 for DNS options in Router Advertisements.</t>
-          <t>Updated to use RFC 8405 for IPv6 node requirements.</t> 
+          <t>Updated to use RFC 8504 for IPv6 node requirements.</t>
           <t>Updated S-2 requirement to a MUST to prevent spoofing attacks.</t> 
           <t>Added a requirement to not utilize EUI-64 address.</t> 
        </list>
