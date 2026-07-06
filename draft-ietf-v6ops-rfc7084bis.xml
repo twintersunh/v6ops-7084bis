@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084" docName="draft-ietf-v6ops-rfc7084bis-05">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084,9818" docName="draft-ietf-v6ops-rfc7084bis-06">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -644,7 +644,11 @@
             <xref target="I-D.ietf-6man-slaac-renum"></xref>.</t>
 
             <t>The IPv6 CE router MUST NOT enable IPv6 Router Advertisement Guard, <xref target="RFC6105"></xref>, by 
-            default.</t>
+            default. This requirement enables functionality like backup routers
+            or SNAC <xref target="I-D.ietf-snac-simple"></xref> without administrator intervention. In an environment
+            with malicious hosts an administrator may want to enable RA Guard for those hosts.</t>
+
+            <t> The IPv6 CE router SHOULD implement <xref target="RFC8484"/> (DoH), and MAY support <xref target="RFC7858"/> (DoT). </t>
       
           </list></t>
           <t>LAN Prefix Delegation requirements (RFC 9818):<list style="format LPD-%d:"> 
@@ -831,9 +835,11 @@
       <?rfc include='reference.RFC.7721.xml'?>
       <?rfc include='reference.RFC.7772.xml'?>
       <?rfc include='reference.RFC.7844.xml'?>
+      <?rfc include='reference.RFC.7858.xml'?>
       <?rfc include='reference.RFC.8064.xml'?>
       <?rfc include='reference.RFC.8106.xml'?>
       <?rfc include='reference.RFC.8415.xml'?>
+      <?rfc include='reference.RFC.8484.xml'?>
       <?rfc include='reference.RFC.8504.xml'?>
       <?rfc include='reference.RFC.8585.xml'?>
       <?rfc include='reference.RFC.9096.xml'?>
@@ -844,7 +850,7 @@
 </references>
 
 <references title="Informative References">
-
+      <?rfc include="reference.I-D.ietf-snac-simple.xml"?>
       <reference anchor="UPnP-IGD" target="http://upnp.org/specs/gw/igd2/">
         <front>
           <title>InternetGatewayDevice:2 Device Template Version 1.01</title>
