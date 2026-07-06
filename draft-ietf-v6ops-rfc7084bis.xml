@@ -532,7 +532,7 @@
             target="RFC4193"></xref>, whether or not WAN connectivity
             exists.</t>
 
-            <t>IPv6 hosts should be capable of using SLAAC and may be capable
+            <t>IPv6 hosts are capable of using SLAAC and may be capable
             of using DHCPv6 for acquiring their addresses.</t>
 
             <t>IPv6 hosts may use DHCPv6 for other configuration information,
