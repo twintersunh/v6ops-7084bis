@@ -658,7 +658,7 @@
             or SNAC <xref target="I-D.ietf-snac-simple"></xref> without administrator intervention. In an environment
             with malicious hosts an administrator may want to enable RA Guard for those hosts.</t>
 
-            <t> The IPv6 CE router SHOULD implement <xref target="RFC8484"/> (DoH), and MAY support <xref target="RFC7858"/> (DoT). </t>
+            <t>The IPv6 CE router SHOULD implement DNS proxy functionality <xref target="RFC5625"/> that supports DoH <xref target="RFC8484"/>, and MAY support DoT <xref target="RFC7858"/>.</t>
       
           </list></t>
           <t>LAN Prefix Delegation requirements (RFC 9818):<list style="format LPD-%d:"> 
@@ -794,7 +794,7 @@
           <t>Added PRefix Delegation on LAN requirements, RFC 9818</t>
           <t>Added RA Guard, which MUST NOT be enabled by default.</t>
           <t>Added an exception to the RA Guard requirement for backup routers and SNAC deployments.</t>
-          <t>Added support for DNS over HTTPS (RFC 8484) and DNS over TLS (RFC 7858).</t>
+          <t>Added support for DNS over HTTPS (RFC 8484) and DNS over TLS (RFC 7858) via the DNS proxy.</t>
           <t>Added Hop-by-Hop Processing to the General Section. </t>
           <t>Added a requirement for DNS proxies (RFC 5625) to support IPv6.</t>
           <t>Added a requirement to avoid IP fragmentation for DNS queries (RFC 9715).</t>
