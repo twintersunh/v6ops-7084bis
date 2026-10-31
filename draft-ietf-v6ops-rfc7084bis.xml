@@ -480,8 +480,8 @@
             <t>Any packet received by the IPv6 CE router with a destination
                address in the prefix(es) delegated to the CE router but
                not in the set of prefixes assigned by the CE router to the
-               LAN must be dropped.  In other words, the next hop for the
-               prefix(es) delegated to the CE router should be the null
+               LAN MUST be dropped.  In other words, the next hop for the
+               prefix(es) delegated to the CE router SHOULD be the null
                destination.  This is necessary to prevent forwarding loops
                when some addresses covered by the aggregate are not
                reachable <xref target="RFC4632"></xref>.<list
@@ -639,7 +639,7 @@
 
             <t>The IPv6 CE router SHOULD have a default MaxRtrAdvInterval value of 300 seconds and
             default MinRtrAdvInterval value of 100 seconds from <xref target="RFC4861"></xref>. Note, 
-            the interval at which Router Advertisements are transmited must be lower then the smallest
+            the interval at which Router Advertisements are transmitted MUST be lower than the smallest
             address lifetimes advertised.</t>
 
             <t>The IPv6 CE router SHOULD implement SLAAC renumbering events as documented in 
