@@ -426,7 +426,12 @@
             <t>If the IPv6 CE router receives a Router Advertisement message
             (described in <xref target="RFC4861"></xref>) with the M flag set
             to 1, the IPv6 CE router MUST do DHCPv6 address assignment
-            (request an IA_NA option).</t>
+            (request an IA_NA option). If the value of the M flag subsequently
+            changes from 1 to 0, the IPv6 CE router MUST continue running DHCPv6
+            address assignment; i.e., the change in the value of the M flag has
+            no effect. In particular, the IPv6 CE router MUST NOT reinvoke DHCPv6
+            address assignment if it is already participating in it as a result
+            of an earlier Router Advertisement.</t>
 
             <t>If the IPv6 CE router does not acquire a global IPv6 address(es)
             from either SLAAC or DHCPv6, then it MUST create a global IPv6
@@ -451,11 +456,6 @@
             <t>The IPv6 CE router MUST NOT use an EUI-64 based address as 
             discussed in <xref target="RFC7721"></xref>. IPv6 CE router SHOULD follow
             <xref target="RFC8064"></xref> when generating an IPv6 address.</t>
-
-            <t> If the value of the O or M flag in Router Advertisement changes from TRUE to FALSE, 
-            the CE router MUST continue running the stateful address autoconfiguration
-            protocol, i.e., the change in the value of Flags has no effect. In particular, a CE router MUST NOT reinvoke stateful
-            configuration if it is already participating in the stateful protocol as a result of an earlier advertisement.</t>
           </list></t>
 
         <t>Prefix delegation requirements: <list style="format WPD-%d:">
@@ -478,7 +478,9 @@
 
             <t>By default, the IPv6 CE router MUST initiate DHCPv6 prefix
             delegation when either the M or O flags are set to 1 in a received
-            Router Advertisement (RA) message.  Behavior of the CE router to 
+            Router Advertisement (RA) message. A subsequent change of the M or O
+            flags to 0 MUST NOT cause the IPv6 CE router to stop DHCPv6 prefix
+            delegation. Behavior of the CE router to
             use DHCPv6 prefix delegation when the CE router has not received 
             any RA or received an RA with the M and the O bits set to zero is 
             out of scope for this document.</t>
@@ -597,7 +599,7 @@
             <t>The A and L flags' (<xref target="RFC4861"></xref>) settings SHOULD be user configurable.</t>
 
             <t>The IPv6 CE router MUST support a DHCPv6 server capable of IPv6
-            address assignment according to OR
+            address assignment OR
             a stateless DHCPv6 server according to <xref
             target="RFC9915"></xref> on its LAN interfaces.</t>
 
@@ -796,6 +798,7 @@
           <t>Added Hop-by-Hop Processing to the General Section. </t>
           <t>Added a requirement for DNS proxies (RFC 5625) to support IPv6.</t>
           <t>Added a requirement to avoid IP fragmentation for DNS queries (RFC 9715).</t>
+          <t>Clarified that a change of the M or O flags to 0 does not stop DHCPv6 address assignment or prefix delegation.</t>
           <t>Added support for SLAAC renumbering.</t>
           <t>Clarified that Link-Local packets should not be forwarded.</t>
           <t>Added LAN requirements for Router Advertisements Intervals.</t>
