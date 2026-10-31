@@ -311,14 +311,17 @@
             zero <xref target="RFC4861"></xref>.</t>
 
             <t>The IPv6 CE router MUST NOT forward packets with Link-Local source 
-            or destination addresses to other links <xref target="RFC4291"></xref>], Section 2.5.6. 
-            However, there is a corner case discussed in [RFC4007], Section 9, 
+            or destination addresses to other links (<xref target="RFC4291" section="2.5.6"/>).
+            However, there is a corner case discussed in <xref target="RFC4007" section="9"/>,
             where a router is expected to forward a packet with Link-Local source 
             or destination addresses back to the link it was received on, 
             if appropriate, and subject to Neighbor Discovery resolution of the 
             destination address.</t>
 
-            <t>The IPv6 CE router MUST support Hop-by-Hop Option processing as described in <xref target="RFC9673"></xref>.</t> 
+            <t>The IPv6 CE router MUST support Hop-by-Hop Option processing as described in <xref target="RFC9673"></xref>.</t>
+
+            <t>If implementing a DNS proxy <xref target="RFC5625"></xref>, the IPv6 CE router MUST
+            support IPv6 when resolving or forwarding DNS traffic.</t>
 
           </list></t>
       </section>
@@ -372,6 +375,9 @@
             enabled by default or mechanisms by which users would configure
             the functionality. Handling PCP requests from PCP clients in the
             LAN side of the CE router is out of scope.</t>
+
+            <t>The IPv6 CE router MUST support R5 and R6 in Section 3.2 of
+            <xref target="RFC9715"></xref> when performing DNS queries.</t>
           </list></t>
 
         <t>Link-layer requirements: <list style="format WLL-%d:">
@@ -788,6 +794,8 @@
           <t>Added an exception to the RA Guard requirement for backup routers and SNAC deployments.</t>
           <t>Added support for DNS over HTTPS (RFC 8484) and DNS over TLS (RFC 7858).</t>
           <t>Added Hop-by-Hop Processing to the General Section. </t>
+          <t>Added a requirement for DNS proxies (RFC 5625) to support IPv6.</t>
+          <t>Added a requirement to avoid IP fragmentation for DNS queries (RFC 9715).</t>
           <t>Added support for SLAAC renumbering.</t>
           <t>Clarified that Link-Local packets should not be forwarded.</t>
           <t>Added LAN requirements for Router Advertisements Intervals.</t>
@@ -818,6 +826,7 @@
       <?rfc include='reference.RFC.2464.xml'?>
       <?rfc include='reference.RFC.2827.xml'?>
       <?rfc include='reference.RFC.3646.xml'?>
+      <?rfc include='reference.RFC.4007.xml'?>
       <?rfc include='reference.RFC.4191.xml'?>
       <?rfc include='reference.RFC.4193.xml'?>
       <?rfc include='reference.RFC.4291.xml'?>
@@ -828,6 +837,7 @@
       <?rfc include='reference.RFC.4861.xml'?>
       <?rfc include='reference.RFC.4862.xml'?>
       <?rfc include='reference.RFC.5072.xml'?>
+      <?rfc include='reference.RFC.5625.xml'?>
       <?rfc include='reference.RFC.5905.xml'?>
       <?rfc include='reference.RFC.5908.xml'?>
       <?rfc include='reference.RFC.5942.xml'?>
@@ -857,6 +867,7 @@
 
 <references title="Informative References">
       <?rfc include="reference.I-D.ietf-snac-simple.xml"?>
+      <?rfc include='reference.RFC.9715.xml'?>
       <reference anchor="UPnP-IGD" target="http://upnp.org/specs/gw/igd2/">
         <front>
           <title>InternetGatewayDevice:2 Device Template Version 1.01</title>
