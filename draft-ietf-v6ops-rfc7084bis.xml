@@ -11,7 +11,7 @@
 <?rfc sortrefs="yes" ?>
 <?rfc compact="yes" ?>
 <?rfc subcompact="no" ?>
-<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084,9818" docName="draft-ietf-v6ops-rfc7084bis-06">
+<rfc category="bcp" ipr="trust200902" submissionType="IETF" consensus="true" obsoletes="7084,9818" docName="draft-ietf-v6ops-rfc7084bis-07">
   <front>
     <title abbrev="IPv6 CE Router Requirements">Basic Requirements for IPv6
     Customer Edge Routers</title>
@@ -104,18 +104,20 @@
 
       <section title="Requirements Language">
         <t>
-           Take careful note: Unlike other IETF documents, the key words "MUST",
-           "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT",
-           "RECOMMENDED", "MAY", and "OPTIONAL" in this document are not used as
-           described in <xref target="RFC2119">RFC 2119</xref>. This document uses 
-           these keywords not
-           strictly for the purpose of interoperability, but rather for the
-           purpose of establishing industry-common baseline functionality.  As
-           such, the document points to several other specifications (preferable
-           in RFC or stable form) to provide additional guidance to implementers
-           regarding any protocol implementation required to produce a
-           successful CE router that interoperates successfully with a
-           particular subset of currently deploying and planned common IPv6
+           The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+           "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+           "OPTIONAL" in this document are to be interpreted as described in
+           BCP 14 <xref target="RFC2119"></xref> <xref target="RFC8174"></xref>
+           when, and only when, they appear in all capitals, as shown here.
+         </t>
+        <t>
+           This document uses these keywords not strictly for the purpose of
+           interoperability, but rather for the purpose of establishing
+           industry-common baseline functionality.  As such, the document points
+           to several other specifications to provide additional guidance to
+           implementers regarding any protocol implementation required to
+           produce a successful CE router that interoperates successfully with a
+           particular subset of currently deployed and planned common IPv6
            access networks.
          </t>
       </section>
@@ -282,7 +284,7 @@
 
         <t><list style="format G-%d:">
             <t>An IPv6 CE router is an IPv6 node according to the <xref
-            target="RFC8504"> IPv6 Node Requirements specification</xref>.</t>
+            target="I-D.ietf-6man-rfc8504-bis"> IPv6 Node Requirements specification</xref>.</t>
 
             <t>The IPv6 CE router MUST implement ICMPv6 according to <xref
             target="RFC4443"></xref>. In particular, point-to-point links MUST
@@ -339,7 +341,7 @@
             <t>When the IPv6 CE router is attached to the WAN interface link, it MUST
             act as an IPv6 host for the purposes of stateless <xref
             target="RFC4862"></xref> or stateful <xref
-            target="RFC8415"></xref> interface address assignment.</t>
+            target="RFC9915"></xref> interface address assignment.</t>
 
             <t>The IPv6 CE router MUST generate a link-local address and
             finish Duplicate Address Detection according to <xref
@@ -355,7 +357,7 @@
             hop.</t>
 
             <t>The IPv6 CE router MUST act as a requesting router for the purposes of
-            DHCPv6 prefix delegation (<xref target="RFC8415"></xref>).</t>
+            DHCPv6 prefix delegation (<xref target="RFC9915"></xref>).</t>
 
             <t>The IPv6 CE router MUST use a persistent DHCP Unique Identifier
             (DUID) for DHCPv6 messages. The DUID MUST NOT change between
@@ -398,10 +400,10 @@
             option.</t>
 
             <t>The IPv6 CE router MUST support DHCPv6 <xref
-            target="RFC8415"></xref> client behavior.</t>
+            target="RFC9915"></xref> client behavior.</t>
 
             <t>The IPv6 CE router MUST be able to support the following DHCPv6
-            options: Identity Association for Non-temporary Address (IA_NA), Reconfigure Accept <xref target="RFC8415"></xref>,
+            options: Identity Association for Non-temporary Address (IA_NA), Reconfigure Accept <xref target="RFC9915"></xref>,
             and DNS_SERVERS <xref target="RFC3646"></xref>. The IPv6 CE router
             SHOULD be able to support the DNS Search List (DNSSL) option as
             specified in <xref target="RFC3646"></xref>.</t>
@@ -427,7 +429,7 @@
             to require a global IPv6 address on the WAN interface.</t>
 
             <t>The IPv6 CE router MUST support the SOL_MAX_RT 
-               option <xref target="RFC8415"></xref>
+               option <xref target="RFC9915"></xref>
                and request the SOL_MAX_RT option in an Option Request Option (ORO).</t>
 
             <t>As a router, the IPv6 CE router MUST follow the weak host (Weak
@@ -438,7 +440,7 @@
 
             <t>The IPv6 CE router SHOULD implement the Information Refresh
             Time option and associated client behavior as specified in <xref
-            target="RFC8415"></xref>.</t>
+            target="RFC9915"></xref>.</t>
 
             <t>The IPv6 CE router MUST NOT use an EUI-64 based address as 
             discussed in <xref target="RFC7721"></xref>. IPv6 CE router SHOULD follow
@@ -453,7 +455,7 @@
         <t>Prefix delegation requirements: <list style="format WPD-%d:">
             <t>The IPv6 CE router MUST support DHCPv6 prefix delegation
             requesting router behavior as specified in <xref
-            target="RFC8415"></xref> (Identity Association for Prefix Delegation (IA_PD) option).</t>
+            target="RFC9915"></xref> (Identity Association for Prefix Delegation (IA_PD) option).</t>
 
             <t>The IPv6 CE router MAY indicate as a hint to the delegating
             router the size of the prefix it requires. If so, it MUST ask for
@@ -494,7 +496,7 @@
             option in DHCPv6, it MUST accept an IA_PD option in DHCPv6
             Advertise/Reply messages, even if the message does not contain any
             addresses, unless configured to only obtain its WAN IPv6 address
-            via DHCPv6; see <xref target="RFC8415"></xref>.</t>
+            via DHCPv6; see <xref target="RFC9915"></xref>.</t>
 
             <t>By default, an IPv6 CE router MUST NOT initiate any dynamic
             routing protocol on its WAN interface.</t>
@@ -591,7 +593,7 @@
             <t>The IPv6 CE router MUST support a DHCPv6 server capable of IPv6
             address assignment according to OR
             a stateless DHCPv6 server according to <xref
-            target="RFC8415"></xref> on its LAN interfaces.</t>
+            target="RFC9915"></xref> on its LAN interfaces.</t>
 
             <t>Unless the IPv6 CE router is configured to support the DHCPv6
             IA_NA option, it SHOULD set the M flag to zero and the O flag to 1 in
@@ -609,7 +611,7 @@
 
             <t>The IPv6 CE router SHOULD make available a subset of DHCPv6
             options (as listed in Section 21 of <xref
-            target="RFC8415"></xref>) received from the DHCPv6 client on its
+            target="RFC9915"></xref>) received from the DHCPv6 client on its
             WAN interface to its LAN-side DHCPv6 server.</t>
 
             <t>The IPv6 CE router MUST signal stale configuration information as
@@ -653,7 +655,7 @@
           </list></t>
           <t>LAN Prefix Delegation requirements (RFC 9818):<list style="format LPD-%d:"> 
 
-           <t>Each IPv6 CE router <bcp14>MUST</bcp14> support IPv6 prefix assignment according to <xref target="RFC8415" section="13.3"/> 
+           <t>Each IPv6 CE router <bcp14>MUST</bcp14> support IPv6 prefix assignment according to <xref target="RFC9915" section="12.2"/> 
            (Identity Association for Prefix Delegation (IA_PD) option) on its LAN interface(s).</t>
            
            <t>Each IPv6 CE router <bcp14>MUST</bcp14> assign a prefix from the delegated prefix as specified by L-2. 
@@ -795,10 +797,11 @@
           <t>Updated with RFC 9096 changes for renumbering.</t>
           <t>Updated to use RFC 8585 for transition technologies.</t>
           <t>Removed transition technologies 6RD and DS-Lite requirements.</t>
-          <t>Updated to use RFC 8415 for DHCPv6</t>
+          <t>Updated the Requirements Language to use BCP 14 (RFC 2119 and RFC 8174), consistent with RFC 9818.</t>
+          <t>Updated to use RFC 9915 for DHCPv6</t>
           <t>Updated to use RFC 7157 for mutlihoming discussion.</t>
           <t>Updated to use RFC 8106 for DNS options in Router Advertisements.</t>
-          <t>Updated to use RFC 8504 for IPv6 node requirements.</t>
+          <t>Updated to use draft-ietf-6man-rfc8504-bis for IPv6 node requirements.</t>
           <t>Updated S-2 requirement to a MUST to prevent spoofing attacks.</t> 
           <t>Added a requirement to not utilize EUI-64 address.</t> 
        </list>
@@ -840,14 +843,15 @@
       <?rfc include='reference.RFC.7858.xml'?>
       <?rfc include='reference.RFC.8064.xml'?>
       <?rfc include='reference.RFC.8106.xml'?>
-      <?rfc include='reference.RFC.8415.xml'?>
+      <?rfc include='reference.RFC.8174.xml'?>
       <?rfc include='reference.RFC.8484.xml'?>
-      <?rfc include='reference.RFC.8504.xml'?>
       <?rfc include='reference.RFC.8585.xml'?>
       <?rfc include='reference.RFC.9096.xml'?>
       <?rfc include='reference.RFC.9131.xml'?>
       <?rfc include='reference.RFC.9673.xml'?>
       <?rfc include='reference.RFC.9762.xml'?>
+      <?rfc include='reference.RFC.9915.xml'?>
+      <?rfc include='reference.I-D.ietf-6man-rfc8504-bis.xml'?>
       <?rfc include='reference.I-D.ietf-6man-slaac-renum.xml'?>
 </references>
 
