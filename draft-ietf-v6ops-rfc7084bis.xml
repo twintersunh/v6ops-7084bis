@@ -259,10 +259,16 @@
           IPv6 addresses. For local IPv6 communication, the mechanisms
           specified in <xref target="RFC4191"></xref> are used.</t>
 
-          <t>ULA addressing is useful where the IPv6 CE router has multiple
-          LAN interfaces with hosts that need to communicate with each other.
-          If the IPv6 CE router has only a single LAN interface (IPv6 link),
-          then link-local addressing can be used instead.</t>
+          <t>ULA addressing provides hosts with stable addresses for
+          communication within the end-user network that do not depend on WAN
+          connectivity or on delegated prefixes. Where the IPv6 CE router has
+          multiple LAN interfaces, ULA addressing allows hosts on different
+          LAN interfaces to continue to communicate with each other when the
+          WAN is unavailable. Hosts that implement
+          <xref target="I-D.ietf-6man-rfc6724-update"></xref> prefer ULAs over
+          IPv4 for destinations within ULA prefixes that they have learned are
+          local, such as prefixes advertised in Prefix Information Options by
+          the IPv6 CE router (see ULA-6).</t>
 
           <t>Coexistence with IPv4 requires any IPv6 CE router(s) on the LAN
           to conform to these recommendations, especially requirements ULA-5
@@ -553,13 +559,19 @@
         IPv6 CE router's LAN interfaces only.</t>
 
         <t>ULA requirements:<list style="format ULA-%d:">
-            <t>The IPv6 CE router SHOULD be capable of generating a ULA prefix
-            <xref target="RFC4193"></xref>.</t>
+            <t>The IPv6 CE router MUST generate a ULA prefix
+            <xref target="RFC4193"></xref> and provide ULA addressing on its
+            LAN interfaces by default. The Global ID of the ULA prefix MUST be
+            generated following <xref target="RFC4193" section="3.2.2"/> or an
+            equivalent procedure that ensures an equivalent degree of
+            uniqueness.</t>
 
-            <t>An IPv6 CE router with a ULA prefix MUST maintain this prefix
-            consistently across reboots.</t>
+            <t>The ULA prefix MUST be maintained consistently across reboots
+            and MUST NOT change as a result of changes in WAN connectivity or
+            delegated prefixes.</t>
 
-            <t>The value of the ULA prefix SHOULD be configurable.</t>
+            <t>The ULA prefix SHOULD be configurable, and the router SHOULD
+            allow ULA addressing to be disabled.</t>
 
             <t>By default, the IPv6 CE router MUST act as a site border router
             according to Section 4.3 of <xref target="RFC4193"></xref> and
@@ -569,6 +581,12 @@
             <t>An IPv6 CE router MUST NOT advertise itself as a default router
             with a Router Lifetime greater than zero whenever all of its
             configured and delegated prefixes are ULA prefixes.</t>
+
+            <t>The IPv6 CE router MUST continue to advertise its ULA prefix(es)
+            in Prefix Information Options and in Route Information Options
+            <xref target="RFC4191"></xref> on all LAN interfaces, independent
+            of WAN connectivity, so that hosts on different LAN interfaces can
+            continue to communicate when the WAN is unavailable.</t>
           </list></t>
 
         <t>LAN requirements:<list style="format L-%d:">
@@ -576,12 +594,12 @@
             Neighbor Discovery for IPv6 <xref target="RFC4861"></xref>.</t>
 
             <t>The IPv6 CE router MUST assign a separate /64 from its
-            delegated prefix(es) (and ULA prefix if configured to provide ULA
-            addressing) for each of its LAN interfaces.</t>
+            delegated prefix(es) (and ULA prefix, unless ULA addressing has
+            been disabled per ULA-3) for each of its LAN interfaces.</t>
 
             <t>An IPv6 CE router MUST advertise itself as a router for the
-            delegated prefix(es) (and ULA prefix if configured to provide ULA
-            addressing) using the "Route Information Option" specified in
+            delegated prefix(es) (and ULA prefix, unless ULA addressing has
+            been disabled per ULA-3) using the "Route Information Option" specified in
             Section 2.3 of <xref target="RFC4191"></xref>. This advertisement
             is independent of having or not having IPv6 connectivity on the
             WAN interface.</t>
@@ -693,7 +711,7 @@
            of 64 is used as that is the current prefix-length supported by SLAAC <xref target="RFC4862"/>. For hierarchical 
            prefix delegation, a prefix-length shorter than 64 may be configured.</t>
 
-           <t>IPv6 CE routers configured to generate a ULA prefix as defined in ULA-1  
+           <t>IPv6 CE routers providing ULA addressing as defined in ULA-1
            <bcp14>MUST</bcp14> continue to provision available GUA IPv6 prefixes.</t>
 
            <t>If an IPv6 CE router is provisioning both a ULA and GUA via prefix delegation, the GUA <bcp14>SHOULD</bcp14> 
@@ -799,6 +817,7 @@
           <t>Added a requirement for DNS proxies (RFC 5625) to support IPv6.</t>
           <t>Added a requirement to avoid IP fragmentation for DNS queries (RFC 9715).</t>
           <t>Clarified that a change of the M or O flags to 0 does not stop DHCPv6 address assignment or prefix delegation.</t>
+          <t>ULA addressing is now generated and enabled by default to support LAN-to-LAN communication when the WAN is unavailable.</t>
           <t>Added support for SLAAC renumbering.</t>
           <t>Clarified that Link-Local packets should not be forwarded.</t>
           <t>Added LAN requirements for Router Advertisements Intervals.</t>
@@ -870,6 +889,7 @@
 
 <references title="Informative References">
       <?rfc include="reference.I-D.ietf-snac-simple.xml"?>
+      <?rfc include='reference.I-D.ietf-6man-rfc6724-update.xml'?>
       <?rfc include='reference.RFC.9715.xml'?>
       <reference anchor="UPnP-IGD" target="http://upnp.org/specs/gw/igd2/">
         <front>
